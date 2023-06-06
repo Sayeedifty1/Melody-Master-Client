@@ -7,7 +7,7 @@ import NavLinks from "./Navlinks";
 const Navbar = () => {
     return (
         <div className='fixed w-full  z-10 '>
-            <div >
+            <div className="text-white">
                 <Container>
                     <div className='flex flex-row items-center justify-between gap-3 md:gap-0'>
                         <div><Logo></Logo></div>
