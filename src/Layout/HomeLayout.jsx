@@ -1,7 +1,8 @@
 
-import Instructor from '../components/Home/Instructor';
+
 import Offer from '../components/Home/Offer';
 import PopularClass from '../components/Home/PopularClass';
+import PopularInstructor from '../components/Home/PopularInstructor';
 import MySlider from '../components/Home/Slider';
 
 const HomeLayout = () => {
@@ -18,7 +19,7 @@ const HomeLayout = () => {
       <div className="mt-[400px]">
         <PopularClass />
       </div>
-      <Instructor></Instructor>
+      <PopularInstructor></PopularInstructor>
     </>
   );
 };

@@ -1,3 +1,5 @@
+
+
 import useClasses from "../../hooks/useClasses";
 import Container from "../Shared/Container";
 import Title from "../Title/Title";
@@ -26,7 +28,7 @@ const PopularClass = () => {
                             <p className="text-2xl font-semibold">Instructor: {classItem.instructor}</p>
                             <p>Enrolled Students: {classItem.numberOfStudents}</p>
                             <p>Available Seats: {classItem.availableSeats}</p>
-                            <p>Price: {classItem.price}</p>
+                            <p>Price: ${classItem.price}</p>
                             <div className="card-actions justify-end">
                                 <button className="button-74" role="button">
                                     See Details

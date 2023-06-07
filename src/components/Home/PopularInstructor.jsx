@@ -3,7 +3,7 @@ import Container from "../Shared/Container";
 import Title from "../Title/Title";
 
 
-const Instructor = () => {
+const PopularInstructor = () => {
     const [instructors] = useInstructor();
     console.log(instructors)
     return (
@@ -46,4 +46,4 @@ const Instructor = () => {
     );
 };
 
-export default Instructor;
+export default PopularInstructor;
