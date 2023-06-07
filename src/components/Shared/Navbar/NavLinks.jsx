@@ -8,7 +8,7 @@ const NavLinks = () => {
             <Link><div className='dark font-semibold px-6'>Home</div></Link>
             <Link to="/instructors"><div className='font-semibold px-6'>Instructor</div></Link>
             <Link to="/classes"><div className=' font-semibold px-6'>Classes</div></Link>
-            <Link><div className=' font-semibold px-6'>Dashboard</div></Link>
+            <Link to="/dashboard"><div className=' font-semibold px-6'>Dashboard</div></Link>
             
         </div>
 
