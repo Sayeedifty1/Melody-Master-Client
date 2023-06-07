@@ -1,0 +1,190 @@
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+const SignUp = () => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+        watch, // Add watch to get the value of confirm password field
+    } = useForm();
+
+    const password = watch("password"); // Get the value of the password field
+
+    const onSubmit = (data) => {
+        console.log(data);
+        reset();
+    };
+
+    return (
+        <div className="flex items-center justify-center h-screen">
+            <div className="w-full max-w-4xl mx-auto shadow-2xl bg-base-100 p-6">
+                <h1 className="text-5xl font-bold text-center mb-6">Sign up now!</h1>
+                <p className="text-center mb-6">
+                    Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+                    excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
+                    id nisi.
+                </p>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="grid grid-cols-2 gap-6">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                {...register("name", { required: true })}
+                                name="name"
+                                placeholder="Name"
+                                className="input input-bordered"
+                            />
+                            {errors.name && (
+                                <span className="text-red-600">Name is required</span>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label>
+                            <input
+                                type="text"
+                                {...register("photoURL", { required: true })}
+                                placeholder="Photo URL"
+                                className="input input-bordered"
+                            />
+                            {errors.photoURL && (
+                                <span className="text-red-600">Photo URL is required</span>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                {...register("email", { required: true })}
+                                name="email"
+                                placeholder="Email"
+                                className="input input-bordered"
+                            />
+                            {errors.email && (
+                                <span className="text-red-600">Email is required</span>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Phone Number</span>
+                            </label>
+                            <input
+                                type="tel"
+                                {...register("phoneNumber", { required: true })}
+                                placeholder="Phone Number"
+                                className="input input-bordered"
+                            />
+                            {errors.phoneNumber && (
+                                <span className="text-red-600">Phone Number is required</span>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                {...register("password", {
+                                    required: true,
+                                    minLength: 6,
+                                    maxLength: 20,
+                                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                                })}
+                                placeholder="Password"
+                                className="input input-bordered"
+                            />
+                            {errors.password?.type === "required" && (
+                                <p className="text-red-600">Password is required</p>
+                            )}
+                            {errors.password?.type === "minLength" && (
+                                <p className="text-red-600">Password must be 6 characters</p>
+                            )}
+                            {errors.password?.type === "maxLength" && (
+                                <p className="text-red-600">
+                                    Password must be less than 20 characters
+                                </p>
+                            )}
+                            {errors.password?.type === "pattern" && (
+                                <p className="text-red-600">
+                                    Password must have one uppercase letter, one lowercase letter,
+                                    one number, and one special character.
+                                </p>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Confirm Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                {...register("confirmPassword", {
+                                    required: true,
+                                    validate: (value) => value === password,
+                                })}
+                                placeholder="Confirm Password"
+                                className="input input-bordered"
+                            />
+                            {errors.confirmPassword?.type === "required" && (
+                                <p className="text-red-600">Confirm Password is required</p>
+                            )}
+                            {errors.confirmPassword?.type === "validate" && (
+                                <p className="text-red-600">Passwords do not match</p>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Gender</span>
+                            </label>
+                            <select
+                                {...register("gender", { required: true })}
+                                className="input input-bordered"
+                            >
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                            {errors.gender && (
+                                <span className="text-red-600">Gender is required</span>
+                            )}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Address</span>
+                            </label>
+                            <textarea
+                                {...register("address", { required: true })}
+                                placeholder="Address"
+                                className="textarea textarea-bordered"
+                            />
+                            {errors.address && (
+                                <span className="text-red-600">Address is required</span>
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-control mt-6">
+                        <input
+                            className="btn btn-primary"
+                            type="submit"
+                            value="Sign Up"
+                            disabled={!!errors.confirmPassword}
+                        />
+                    </div>
+                </form>
+                <p className="text-center mt-4">
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default SignUp;
