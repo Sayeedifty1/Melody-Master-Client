@@ -5,6 +5,7 @@ import { ImEyeBlocked } from 'react-icons/im';
 import { AiOutlineEye } from "react-icons/ai";
 
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { signIn } = useAuth();
@@ -24,12 +25,21 @@ const Login = () => {
         console.log(data);
         signIn(data.email, data.password)
             .then(result => {
-                console.log(result);
                 const user = result.user;
-                console.log(user)
+                console.log(user);
+                Swal.fire({
+                    title: 'User Login Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
                 Navigate(from, { replace: true });
             })
     };
+
 
     return (
         <div className="hero min-h-screen bg-base-200">

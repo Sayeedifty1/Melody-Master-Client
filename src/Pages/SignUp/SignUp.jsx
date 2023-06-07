@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 
@@ -23,8 +24,33 @@ const SignUp = () => {
             console.log(result);
             updateUserProfile(data.name, data.photoURL , data.phoneNumber, data.gender, data.address)
             .then(() => {
-                reset();
-                navigate("/");
+                const saveUser= {name:data.name ,email:data.email,
+                    photoURL:data.photoURL, number:data.phoneNumber,gender:data.gender,address:data.address }
+                    fetch('http://localhost:5000/users',{
+                        method:'POST',
+                        headers:{'content-type':'application/json'},
+                        body:JSON.stringify(saveUser)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if(data.insertedId){
+                            console.log('user created successfully')
+                            reset();
+                            Swal.fire({
+                                title: 'User Created Successfully.',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp'
+                                }
+                            });
+                            navigate("/");
+                        }
+                    })
+                
+                
             })
             .catch(error => console.log(error))
         })
@@ -188,7 +214,7 @@ const SignUp = () => {
                             className="btn btn-primary"
                             type="submit"
                             value="Sign Up"
-                            disabled={!!errors.confirmPassword}
+                            disabled= {!!errors.confirmPassword}
                         />
                     </div>
                 </form>
