@@ -1,10 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import {ImEyeBlocked} from 'react-icons/im';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {  useState } from "react";
+import { ImEyeBlocked } from 'react-icons/im';
 import { AiOutlineEye } from "react-icons/ai";
 
+import useAuth from "../../hooks/useAuth";
+
 const Login = () => {
+    const { signIn } = useAuth();
+    const Navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from || "/";
     const {
         register,
         handleSubmit,
@@ -15,6 +22,13 @@ const Login = () => {
 
     const onSubmit = (data) => {
         console.log(data);
+        signIn(data.email, data.password)
+            .then(result => {
+                console.log(result);
+                const user = result.user;
+                console.log(user)
+                Navigate(from, { replace: true });
+            })
     };
 
     return (
@@ -41,8 +55,8 @@ const Login = () => {
                                 className="input input-bordered"
                             />
                             {errors.email && (
-                                    <span className="text-red-600">Email is required</span>
-                                )}
+                                <span className="text-red-600">Email is required</span>
+                            )}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -55,7 +69,7 @@ const Login = () => {
                                     placeholder="Password"
                                     className="input input-bordered w-full"
                                 />
-                                
+
                                 <div
                                     className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
                                     onClick={() => setShowPassword(!showPassword)}

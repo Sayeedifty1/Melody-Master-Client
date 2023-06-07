@@ -1,7 +1,11 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+
 
 const SignUp = () => {
+    const {createUser, updateUserProfile} = useAuth();
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -14,7 +18,16 @@ const SignUp = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        reset();
+        createUser(data.email, data.password)
+        .then(result => {
+            console.log(result);
+            updateUserProfile(data.name, data.photoURL , data.phoneNumber, data.gender, data.address)
+            .then(() => {
+                reset();
+                navigate("/");
+            })
+            .catch(error => console.log(error))
+        })
     };
 
     return (
