@@ -16,7 +16,7 @@ const PopularInstructor = () => {
                         instructors.map((instructor) => (
                             <div key={instructor._id} className="card w-[350px] h-[350px] bg-base-100 shadow-xl relative overflow-hidden">
                                 <figure>
-                                    <img src={instructor.image} alt="Instructor" className="transition-opacity duration-300 opacity-100 hover:opacity-0" />
+                                    <img src={instructor.photoURL} alt="Instructor" className="transition-opacity duration-300 opacity-100 hover:opacity-0" />
                                 </figure>
                                 <div className="card-body bg-black text-white transition-opacity duration-300 opacity-0 hover:opacity-50 absolute inset-0 flex flex-col justify-center items-center">
                                     <h2 className="card-title text-2xl">{instructor.name}</h2>
@@ -24,12 +24,8 @@ const PopularInstructor = () => {
                                     <hr />
                                     <h2 className="card-title text-xl">Classes Taken:</h2>
                                     <ul>
-                                        {Object.entries(instructor.classesTaken).map(([classKey, classItem], index) => (
-                                            <li key={classKey}>
-                                                {index + 1}. {classItem.name}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                       <li>*{instructor.classes}</li>
+                                    </ul> 
                                     <div className="card-actions justify-end">
                                         <button className="button-74">See Details</button>
                                     </div>

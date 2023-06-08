@@ -23,7 +23,7 @@ const Instructors = () => {
                     {instructors.map((instructor) => (
                         <div key={instructor._id}>
                             <div className="card w-80 h-[600px] bg-base-100 shadow-xl">
-                                <figure><img className="" src={instructor.image} alt="Shoes" /></figure>
+                                <figure style={{ height: '50%' }}><img className="" src={instructor.photoURL} alt="Shoes" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">
                                         {instructor.name}
@@ -33,12 +33,8 @@ const Instructors = () => {
 
                                     <h2>Learn From {instructor.name}</h2>
                                     <ul>
-                                        {Object.entries(instructor.classesTaken).map(([classKey, classItem],) => (
-                                            <li key={classKey}>
-                                                {'*'} {classItem.name}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                       <li>*{instructor.classes}</li>
+                                    </ul> 
                                     <div className="card-actions justify-end">
 
                                         <div className="badge badge-outline">See Classes</div>

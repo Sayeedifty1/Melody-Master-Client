@@ -30,9 +30,13 @@ const PopularClass = () => {
                             <p>Available Seats: {classItem.availableSeats}</p>
                             <p>Price: ${classItem.price}</p>
                             <div className="card-actions justify-end">
-                                <button className="button-74" role="button">
-                                    See Details
-                                </button>
+                                {classItem.availableSeats === 0 ? (
+                                    <button className="btn" disabled>
+                                        Select
+                                    </button>
+                                ) : (
+                                    <button className="button-74">Select</button>
+                                )}
                             </div>
                         </div>
                     </div>
