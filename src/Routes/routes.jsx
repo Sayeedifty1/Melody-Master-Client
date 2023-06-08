@@ -8,6 +8,7 @@ import HomeLayout from "../Layout/HomeLayout";
 
 import Main from "../Layout/Main";
 import Classes from "../Pages/Classes/Classes";
+import ManageUser from "../Pages/Dashboard/ManageUser";
 import Instructors from "../Pages/Instructors/Instructors";
 
 import Login from "../Pages/Login/Login";
@@ -45,7 +46,10 @@ const router = createBrowserRouter([
       path:"/dashboard",
       element:<DashboardLayout></DashboardLayout>,
       children:[
-      
+        {
+          path:"manage-user",
+          element:<ManageUser></ManageUser>
+        }
       ]
     }
    
