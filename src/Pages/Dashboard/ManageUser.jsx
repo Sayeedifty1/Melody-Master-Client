@@ -1,53 +1,69 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { FaUserShield } from "react-icons/fa";
-import { HiOutlineTrash } from "react-icons/hi";
+import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUser = () => {
+    const [disabledButtons, setDisabledButtons] = useState([]);
     const [axiosSecure] = useAxiosSecure();
-    const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await axiosSecure.get('/users')
+    const { data: users = [], refetch } = useQuery(["users"], async () => {
+        const res = await axiosSecure.get("/users");
         return res.data;
     });
 
-    
     const handleMakeAdmin = (user) => {
-        console.log(user._id)
+        console.log(user._id);
+
+        // Disable the clicked button
+        setDisabledButtons((prevDisabledButtons) => [...prevDisabledButtons, user._id]);
+
         fetch(`${import.meta.env.VITE_BASE_URL}/users/admin/${user._id}`, {
-            method: 'PATCH'
+            method: "PATCH",
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 if (data.modifiedCount > 0) {
-                    console.log(data)
-                    Swal.fire(
-                        'Success!',
-                        `${user.name} is now an admin`,
-                        'success'
-                    )
+                    console.log(data);
+                    Swal.fire("Success!", `${user.name} is now an admin`, "success");
                     refetch();
                 }
             })
-    }
+            .catch((error) => {
+                console.error(error);
+
+                // Enable the clicked button again in case of error
+                setDisabledButtons((prevDisabledButtons) =>
+                    prevDisabledButtons.filter((id) => id !== user._id)
+                );
+            });
+    };
 
     const handleMakeInstructor = (user) => {
-        fetch(`${import.meta.env.VITE_BASE_URL}users/instructor/${user._id}`, {
-            method: 'PATCH'
+        // Disable the clicked button
+        setDisabledButtons((prevDisabledButtons) => [...prevDisabledButtons, user._id]);
+
+        fetch(`${import.meta.env.VITE_BASE_URL}/users/instructor/${user._id}`, {
+            method: "PATCH",
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 if (data.modifiedCount > 0) {
-                    console.log(data)
-                    Swal.fire(
-                        'Success!',
-                        `${user.name} is now an instructor`,
-                        'success'
-                    )
+                    console.log(data);
+                    Swal.fire("Success!", `${user.name} is now an instructor`, "success");
                     refetch();
                 }
             })
-    }
+            .catch((error) => {
+                console.error(error);
+
+                // Enable the clicked button again in case of error
+                setDisabledButtons((prevDisabledButtons) =>
+                    prevDisabledButtons.filter((id) => id !== user._id)
+                );
+            });
+    };
 
     return (
         <div className="w-full">
@@ -61,26 +77,40 @@ const ManageUser = () => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Set Role</th>
-                            <th>Action</th>
+                            <th>Phone Number</th>
+                            <th>Role</th>
+                            <th>Make Admin</th>
+                            <th>Make Instructor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            users.map((user, index) =>
-                                <tr key={user._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td> <button onClick={() => handleMakeAdmin(user)} className="btn w-[55px] h-[50px]  bg-[#D1A054] text-xl"><FaUserShield></FaUserShield></button>
-                                    </td>
-                                    <td>
-                                        <button onClick={() => handleMakeInstructor(user)} className="btn w-[55px] h-[50px] bg-red-600 text-xl"><HiOutlineTrash></HiOutlineTrash></button>
-                                    </td>
-                                </tr>)
-                        }
-
-
+                        {users.map((user, index) => (
+                            <tr key={user._id}>
+                                <th>{index + 1}</th>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.number}</td>
+                                <td>{user.role ? user.role : "user"}</td>
+                                <td>
+                                    <button
+                                        onClick={() => handleMakeAdmin(user)}
+                                        className="btn w-[55px] h-[50px] bg-[#D1A054] text-xl"
+                                        disabled={user.role === "admin" || disabledButtons.includes(user._id)}
+                                    >
+                                        <FaUserShield></FaUserShield>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() => handleMakeInstructor(user)}
+                                        className="btn w-[55px] h-[50px] bg-green-600 text-xl"
+                                        disabled={user.role === "instructor" || disabledButtons.includes(user._id)}
+                                    >
+                                        <GiTeacher></GiTeacher>
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
