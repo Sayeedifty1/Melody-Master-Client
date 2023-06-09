@@ -19,3 +19,16 @@ export const addClass = async (classData) => {
 export const GetClasses = (email) => {
     return useQuery('classes', () => axios.get(`${import.meta.env.VITE_BASE_URL}/classes/${email}`))
 }
+
+// getting classes to display in the admin dashboard
+export const fetchClasses = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/classes`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching classes:', error);
+      throw new Error('Failed to fetch classes');
+    }
+  };
+  

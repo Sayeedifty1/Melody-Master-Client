@@ -8,7 +8,7 @@ import UserOptions from "./UserOptions";
 
 
 const Sidebar = () => {
-    const {user} = useAuth();
+    const {user , role} = useAuth();
     const [isActive, setActive] = useState('false')
     return (
         <div>
@@ -42,9 +42,9 @@ const Sidebar = () => {
                     </div>
                     <div className="divider"></div>
                     <div>
-                        <AdminOptions></AdminOptions>
-                        <InstructorOptions></InstructorOptions>
-                        <UserOptions></UserOptions>
+                        {role==='admin' &&  <AdminOptions></AdminOptions>}
+                       {role === 'instructor' && <InstructorOptions></InstructorOptions>}
+                       {!role && <UserOptions></UserOptions>}
                     </div>
                 </div>
                 
