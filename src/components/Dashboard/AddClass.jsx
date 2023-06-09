@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { toast} from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { addClass } from "../../API/class";
 import { uploadImage } from "../../API/uploadimage";
 import useAuth from "../../hooks/useAuth";
@@ -10,7 +11,7 @@ const AddClass = () => {
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const [uploadButtonText, setUploadButtonText] = useState('Upload Class Image');
-    console.log(user)
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,18 +33,20 @@ const AddClass = () => {
                     instructorEmail,
                     price,
                     availableSeats,
-                    image: data.display_url,
+                    image: data.data.display_url,
                     status: 'pending',
+                    numberOfStudents: 0,
                 }
-
                 // posting the room to the db
                 addClass(classData)
-                    .then(data=> {
+                    .then(data => {
                         console.log(data)
                         setUploadButtonText("Uploaded");
-                        setLoading(false);
+                        
                         toast.success('Class added successfully')
-                        // navigate('/dashboard/my-classroom')
+
+                        navigate('/dashboard/my-classroom')
+                        setLoading(false);
                     })
                     .catch(err => {
                         console.log(err)
@@ -53,7 +56,7 @@ const AddClass = () => {
                         setLoading(false);
                     })
             })
-            
+
 
     }
 
@@ -62,9 +65,8 @@ const AddClass = () => {
     }
     return (
         <div>
-
             <AddClassFrom
-                user = {user}
+                user={user}
                 loading={loading}
                 handleSubmit={handleSubmit}
                 handleImageChange={handleImageChange}

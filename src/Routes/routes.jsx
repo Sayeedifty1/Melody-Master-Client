@@ -3,6 +3,7 @@ import {
    
   } from "react-router-dom";
 import AddClass from "../components/Dashboard/AddClass";
+import MyClassroom from "../components/Dashboard/MyClassroom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         {
           path:"add-class",
           element:<AddClass></AddClass>
+        },
+        {
+          path:"my-classroom",
+          element:<MyClassroom></MyClassroom>
         },
       ]
     }
