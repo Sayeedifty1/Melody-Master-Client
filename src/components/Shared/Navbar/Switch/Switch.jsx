@@ -1,11 +1,14 @@
-import '@wcj/dark-mode';
+
 import './style.css'
 const Switch = () => {
     return (
-        <div className='text-sm'>
-            {/* TODO:fix this */}
-            {/* <dark-mode   light="Light" dark="Light" style={{ font: '12px'}}></dark-mode> */}
-        </div>
+        <>
+            <input type="checkbox" id="toggle" className="toggle--checkbox" />
+            <label htmlFor="toggle" className="toggle--label">
+                <span className="toggle--label-background" />
+            </label>
+            <div className="background" />
+        </>
     );
 };
 

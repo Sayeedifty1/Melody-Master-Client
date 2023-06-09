@@ -13,6 +13,8 @@ const ManageClasses = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [selectedId, setSelectedId] = useState('');
+    const [disabledIds, setDisabledIds] = useState([]);
+
 
     const { data: classes = [], refetch } = useQuery(["classes"], async () => {
         const res = await axiosSecure.get('/classes');
@@ -29,8 +31,13 @@ const ManageClasses = () => {
             showConfirmButton: false,
             timer: 1500
         })
+        setDisabledIds([...disabledIds, id]);
+
         refetch();
     };
+    const isButtonDisabled = (id) => disabledIds.includes(id);
+
+
     // onClick function to make a request to deny a class
     const denyClass = async (id) => {
         await axiosSecure.put(`/classes/denied/${id}`);
@@ -41,7 +48,10 @@ const ManageClasses = () => {
             showConfirmButton: false,
             timer: 1500
         })
+        setDisabledIds([...disabledIds, id]);
+
         refetch();
+        
     };
     // for modal
 
@@ -67,6 +77,13 @@ const ManageClasses = () => {
         setInputValue('');
         // Close the modal
         closeModal();
+        Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Feedback sent',
+            showConfirmButton: false,
+            timer: 1500
+        })
     };
     return (
         <div>
@@ -81,6 +98,8 @@ const ManageClasses = () => {
                 inputValue={inputValue}
                 handleInputChange={handleInputChange}
                 handleSend={handleSend}
+                isButtonDisabled={isButtonDisabled}
+                
             />
             <FeedbackModal
                 isOpen={isOpen}

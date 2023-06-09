@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { toast} from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { addClass } from "../../API/class";
 import { uploadImage } from "../../API/uploadimage";
 import useAuth from "../../hooks/useAuth";
@@ -42,9 +42,15 @@ const AddClass = () => {
                     .then(data => {
                         console.log(data)
                         setUploadButtonText("Uploaded");
-                        
-                        toast.success('Class added successfully')
-
+                        Swal.fire({
+                            position: 'middle',
+                            icon: 'success',
+                            title: 'Class Added',
+                            showConfirmButton: true,
+                            confirmButtonText:
+                                '<i class="fa fa-thumbs-up"></i> Great!',
+                            timer: 1500
+                        })
                         navigate('/dashboard/my-classroom')
                         setLoading(false);
                     })

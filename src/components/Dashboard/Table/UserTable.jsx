@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-const UserTable = ({ classes, approveClass, denyClass, openModal }) => {
+const UserTable = ({ classes, approveClass, denyClass, openModal, isButtonDisabled }) => {
 
 
     return (
@@ -48,9 +48,9 @@ const UserTable = ({ classes, approveClass, denyClass, openModal }) => {
                                 <td>{classItem.status}</td>
                                 <td>
                                     <div className="flex gap-2">
-                                        <button onClick={()=>approveClass(classItem._id)} className="btn btn-sm btn-ghost bg-green-600 text-white">Approve</button>
+                                        <button disabled={isButtonDisabled(classItem._id)} onClick={()=>approveClass(classItem._id)} className="btn btn-sm btn-ghost bg-green-600 text-white">Approve</button>
 
-                                        <button onClick={()=> denyClass(classItem._id)} className="btn btn-sm btn-ghost  bg-red-600  text-white">deny</button>
+                                        <button disabled={isButtonDisabled(classItem._id)} onClick={()=> denyClass(classItem._id)} className="btn btn-sm btn-ghost  bg-red-600  text-white">deny</button>
                                         <button onClick={()=>openModal(classItem._id)} className="btn btn-sm btn-ghost bg-yellow-500  text-white">Feedback</button>
                                     </div>
                                 </td>

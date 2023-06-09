@@ -40,7 +40,7 @@ const MyClassroom = () => {
                                 <td>{classItem.numberOfStudents}</td>
                                 <td>{classItem.status}</td>
 
-                                <td>{classItem?.adminsFeedback ? classItem.adminsFeedback : "" }</td>
+                                <td>{classItem?.feedback ? classItem.feedback : "" }</td>
                             </tr>
                         ))}
                     </tbody>

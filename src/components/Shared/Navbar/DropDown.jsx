@@ -1,14 +1,25 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 // import Avatar from './Avatar'
-import { useCallback,  useState } from 'react'
+import { useCallback,  useEffect,  useState } from 'react'
 
 import { Link } from 'react-router-dom'
-import Switch from './Switch/Switch';
 import useAuth from '../../../hooks/useAuth';
 import Avatar from './Avatar';
 
 
+
 const Dropdown = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [isOpen, setIsOpen] = useState(false)
+    useEffect(() => {
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        localStorage.setItem("theme", theme);
+      }, [theme]);
+    const handleTheme = () => {
+        setTheme(theme === "dark" ? "light" : "dark");
+      };
+
+
     const { user, logout } = useAuth();
     const handleLogout = () => {
         logout()
@@ -18,7 +29,7 @@ const Dropdown = () => {
             .catch(error => console.log(error))
     }
     
-    const [isOpen, setIsOpen] = useState(false)
+    
     const toggleOpen = useCallback(() => {
         setIsOpen(value => !value)
     }, [])
@@ -27,7 +38,9 @@ const Dropdown = () => {
             <div className='flex flex-row items-center gap-3'>
                 <div className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
                     {/*TODO:make toggle button that toggle dark and light mode */}
-                    <Switch></Switch>
+                    <input 
+                     onClick={handleTheme}
+                    type="checkbox" className="toggle toggle-lg"  />
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -51,7 +64,7 @@ const Dropdown = () => {
                         {user ? (
                             <div
                                onClick={handleLogout}
-                                className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                                className='px-4 py-3 dark:bg-red-500 hover:bg-neutral-100 transition font-semibold cursor-pointer'
                             >
                                 Logout
                             </div>
@@ -59,7 +72,7 @@ const Dropdown = () => {
                             <>
                                 <Link
                                     to='/login'
-                                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                    className='px-4 py-3  hover:bg-neutral-100 transition font-semibold'
                                 >
                                     Login
                                 </Link>
