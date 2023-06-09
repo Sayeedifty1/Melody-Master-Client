@@ -2,6 +2,7 @@ import {
     createBrowserRouter,
    
   } from "react-router-dom";
+import AddClass from "../components/Dashboard/AddClass";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
 
@@ -49,7 +50,11 @@ const router = createBrowserRouter([
         {
           path:"manage-user",
           element:<ManageUser></ManageUser>
-        }
+        },
+        {
+          path:"add-class",
+          element:<AddClass></AddClass>
+        },
       ]
     }
    
