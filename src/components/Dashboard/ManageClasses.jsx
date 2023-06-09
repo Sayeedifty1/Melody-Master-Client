@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import FeedbackModal from "./Modal/feedbackModal";
 import UserTable from "./Table/userTable";
 
 
@@ -7,19 +10,86 @@ import UserTable from "./Table/userTable";
 
 const ManageClasses = () => {
     const [axiosSecure] = useAxiosSecure();
-    const { data: classes = [] , refetch } = useQuery(["classes"], async () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [selectedId, setSelectedId] = useState('');
+
+    const { data: classes = [], refetch } = useQuery(["classes"], async () => {
         const res = await axiosSecure.get('/classes');
         return res.data;
     });
-    console.log(classes)
+
+    // onClick function to make a request to approve a class
+    const approveClass = async (id) => {
+        await axiosSecure.put(`/classes/approved/${id}`);
+        Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Class Approved',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        refetch();
+    };
+    // onClick function to make a request to deny a class
+    const denyClass = async (id) => {
+        await axiosSecure.put(`/classes/denied/${id}`);
+        Swal.fire({
+            position: 'middle',
+            icon: 'error',
+            title: 'class denied',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        refetch();
+    };
+    // for modal
 
 
+    const openModal = (id) => {
+        setIsOpen(true);
+        setSelectedId(id);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+        setSelectedId('');
+    };
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleSend = () => {
+        console.log( inputValue,);
+        //   sending feedback to the db
+        axiosSecure.put(`/classes/feedback/${selectedId}`, {  inputValue });
+        setInputValue('');
+        // Close the modal
+        closeModal();
+    };
     return (
         <div>
-            <h2>haha now i will decline</h2>
-            <UserTable classes={classes} 
-            refetch={refetch}
+            <iframe className="mx-auto" src="https://embed.lottiefiles.com/animation/20596"></iframe>
+            <UserTable classes={classes}
+                approveClass={approveClass}
+                denyClass={denyClass}
+                refetch={refetch}
+                openModal={openModal}
+                isOpen={isOpen}
+                closeModal={closeModal}
+                inputValue={inputValue}
+                handleInputChange={handleInputChange}
+                handleSend={handleSend}
             />
+            <FeedbackModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+                inputValue={inputValue}
+                handleInputChange={handleInputChange}
+                handleSend={handleSend}
+            ></FeedbackModal>
         </div>
     );
 };
