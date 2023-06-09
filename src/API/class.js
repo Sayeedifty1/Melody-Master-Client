@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
 // add Class
 export const addClass = async (classData) => {
     const response = await fetch(`${import.meta.env.VITE_BASE_URL}/classes`, {
@@ -9,4 +12,10 @@ export const addClass = async (classData) => {
     })
     const data = await response.json()
     return data;
+}
+
+
+// getting classes according to the logged in user email using axios and tanstack query
+export const GetClasses = (email) => {
+    return useQuery('classes', () => axios.get(`${import.meta.env.VITE_BASE_URL}/classes/${email}`))
 }
