@@ -20,6 +20,9 @@ import Instructors from "../Pages/Instructors/Instructors";
 
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PrivateRoute";
+
 
 const router = createBrowserRouter([
     {
@@ -52,11 +55,11 @@ const router = createBrowserRouter([
     },
     {
       path:"/dashboard",
-      element:<DashboardLayout></DashboardLayout>,
+      element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
       children:[
         {
           path:"manage-user",
-          element:<ManageUser></ManageUser>
+          element:<AdminRoute><ManageUser></ManageUser></AdminRoute>
         },
         {
           path:"manage-class",

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { postSelectedClasses } from "../../API/class";
 import Container from "../../components/Shared/Container";
@@ -7,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 const Classes = () => {
     const [approvedClasses, setApprovedClasses] = useState([]);
     const {user} = useAuth();
-
+const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_BASE_URL}/approved-classes`)
@@ -19,6 +20,16 @@ const Classes = () => {
 
 
     const handleSelected = (classItem) => {
+        if (!user) {
+            Swal.fire({
+                icon: "error",
+                title: "You need to login first",
+                text: "Please login first",
+
+            });
+            navigate('/login')
+            return;
+        }
         const userEmail = user.email;
         classItem.userEmail = userEmail;
         classItem.userName = user.displayName;

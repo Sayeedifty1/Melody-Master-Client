@@ -1,5 +1,6 @@
 
 
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { postSelectedClasses } from "../../API/class";
 import useAuth from "../../hooks/useAuth";
@@ -9,27 +10,38 @@ import Title from "../Title/Title";
 
 
 const PopularClass = () => {
-    const{user} = useAuth();
+    const navigate = useNavigate();
+    const { user } = useAuth();
     const [classes] = useClasses();
     console.log(classes)
 
     const handleSelected = (classItem) => {
+        if (!user) {
+            Swal.fire({
+                icon: "error",
+                title: "You need to login first",
+                text: "Please login first",
+
+            });
+            navigate('/login')
+            return;
+        }
         const userEmail = user.email;
         classItem.userEmail = userEmail;
         classItem.userName = user.displayName;
         classItem.classId = classItem._id;
         delete classItem._id;
         postSelectedClasses(classItem)
-            
+
             .then((data) => {
-                if(data.insertedId) {
+                if (data.insertedId) {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
                         text: "Class selected ",
                     });
                 }
-                        
+
             });
 
     }
@@ -58,7 +70,7 @@ const PopularClass = () => {
                                         Select
                                     </button>
                                 ) : (
-                                    <button onClick={()=>handleSelected(classItem)} className="button-74">Select</button>
+                                    <button onClick={() => handleSelected(classItem)} className="button-74">Select</button>
                                 )}
                             </div>
                         </div>
