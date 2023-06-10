@@ -18,6 +18,7 @@ const SelectedClasses = () => {
 
     // delete a class by id
     const deleteClass = (id) => {
+        console.log(id)
         axiosSecure.delete(`/classes/selected/${id}`)
             .then((res) => {
                 if (res.data.deletedCount) {
