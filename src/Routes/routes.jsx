@@ -6,6 +6,7 @@ import AddClass from "../components/Dashboard/AddClass";
 import ManageClasses from "../components/Dashboard/ManageClasses";
 import MyClassroom from "../components/Dashboard/MyClassroom";
 import Payment from "../components/Dashboard/payment/Payment";
+import PaymentHistory from "../components/Dashboard/PaymentHistory";
 import SelectedClasses from "../components/Dashboard/Table/SelectedClasses";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
         {
           path:"payment/:id",
           element:<Payment></Payment>
+        },
+        {
+          path:"payment-history",
+          element:<PaymentHistory></PaymentHistory>
         },
       ]
     }
