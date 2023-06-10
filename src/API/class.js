@@ -25,6 +25,12 @@ export const postSelectedClasses = async (selectedClass) => {
     const data = await response.json()
     return data;
 }
+// get selected classes by user
+export const getSelectedClasses = async (email) => {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/classes/selected/${email}`)
+   const data = await response.json()
+    return data;
+}
 
 
 // getting classes according to the logged in user email using axios and tanstack query
@@ -43,4 +49,5 @@ export const fetchClasses = async () => {
       throw new Error('Failed to fetch classes');
     }
   };
+  
   

@@ -24,7 +24,6 @@ const Classes = () => {
         classItem.userName = user.displayName;
         classItem.classId = classItem._id;
         delete classItem._id;
-        console.log(classItem)
         postSelectedClasses(classItem)
             
             .then((data) => {
