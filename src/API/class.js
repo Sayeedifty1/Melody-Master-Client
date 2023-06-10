@@ -13,6 +13,18 @@ export const addClass = async (classData) => {
     const data = await response.json()
     return data;
 }
+// posting selected classes by user
+export const postSelectedClasses = async (selectedClass) => {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/classes/selected`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(selectedClass)
+    })
+    const data = await response.json()
+    return data;
+}
 
 
 // getting classes according to the logged in user email using axios and tanstack query

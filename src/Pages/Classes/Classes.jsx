@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { postSelectedClasses } from "../../API/class";
 import Container from "../../components/Shared/Container";
+import useAuth from "../../hooks/useAuth";
 
 const Classes = () => {
     const [approvedClasses, setApprovedClasses] = useState([]);
+    const {user} = useAuth();
+
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_BASE_URL}/approved-classes`)
@@ -11,6 +16,29 @@ const Classes = () => {
                 setApprovedClasses(data);
             });
     }, []);
+
+
+    const handleSelected = (classItem) => {
+        const userEmail = user.email;
+        classItem.userEmail = userEmail;
+        classItem.userName = user.displayName;
+        classItem.classId = classItem._id;
+        delete classItem._id;
+        console.log(classItem)
+        postSelectedClasses(classItem)
+            
+            .then((data) => {
+                if(data.insertedId) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Class selected ",
+                    });
+                }
+                        
+            });
+
+    }
 
     return (
         <div className="py-[133px]">
@@ -35,7 +63,7 @@ const Classes = () => {
                                             Select
                                         </button>
                                     ) : (
-                                        <button className="button-74">Select</button>
+                                        <button onClick={()=>handleSelected(classItem)} className="button-74">Select</button>
                                     )}
                                 </div>
                             </div>

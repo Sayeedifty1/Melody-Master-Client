@@ -1,15 +1,38 @@
 
 
+import Swal from "sweetalert2";
+import { postSelectedClasses } from "../../API/class";
+import useAuth from "../../hooks/useAuth";
 import useClasses from "../../hooks/useClasses";
 import Container from "../Shared/Container";
 import Title from "../Title/Title";
 
 
 const PopularClass = () => {
-
+    const{user} = useAuth();
     const [classes] = useClasses();
     console.log(classes)
 
+    const handleSelected = (classItem) => {
+        const userEmail = user.email;
+        classItem.userEmail = userEmail;
+        classItem.userName = user.displayName;
+        classItem.classId = classItem._id;
+        delete classItem._id;
+        postSelectedClasses(classItem)
+            
+            .then((data) => {
+                if(data.insertedId) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Class selected ",
+                    });
+                }
+                        
+            });
+
+    }
     return (
         <Container>
             <Title subHeading="Our Classes" heading="Most Popular Classes" />
@@ -35,7 +58,7 @@ const PopularClass = () => {
                                         Select
                                     </button>
                                 ) : (
-                                    <button className="button-74">Select</button>
+                                    <button onClick={()=>handleSelected(classItem)} className="button-74">Select</button>
                                 )}
                             </div>
                         </div>
