@@ -5,6 +5,7 @@ import {
 import AddClass from "../components/Dashboard/AddClass";
 import ManageClasses from "../components/Dashboard/ManageClasses";
 import MyClassroom from "../components/Dashboard/MyClassroom";
+import Payment from "../components/Dashboard/payment/Payment";
 import SelectedClasses from "../components/Dashboard/Table/SelectedClasses";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
@@ -13,6 +14,7 @@ import HomeLayout from "../Layout/HomeLayout";
 import Main from "../Layout/Main";
 import Classes from "../Pages/Classes/Classes";
 import ManageUser from "../Pages/Dashboard/ManageUser";
+import ErrorPage from "../Pages/ErrorPage";
 import Instructors from "../Pages/Instructors/Instructors";
 
 import Login from "../Pages/Login/Login";
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
           path:"/",
@@ -69,7 +72,11 @@ const router = createBrowserRouter([
         {
           path:'my-classes',
           element:<SelectedClasses></SelectedClasses>
-        }
+        },
+        {
+          path:"payment/:id",
+          element:<Payment></Payment>
+        },
       ]
     }
    

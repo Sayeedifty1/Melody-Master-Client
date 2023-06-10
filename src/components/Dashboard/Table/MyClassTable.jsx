@@ -1,6 +1,7 @@
 
 
 
+
 const MyClassTable = ({ classes, deleteClass, handlePay }) => {
 
 
@@ -44,11 +45,11 @@ const MyClassTable = ({ classes, deleteClass, handlePay }) => {
                                 </td>
                                 <td className="">${classItem.price}</td>
                                 <td>
-                                        <button onClick={()=>handlePay} className="btn btn-sm btn-ghost bg-green-600 text-white">Pay</button>
+                                    <button onClick={() => handlePay(classItem._id)} className="btn btn-sm btn-ghost bg-green-600 text-white">Pay</button>
                                 </td>
 
                                 <td>
-                                    <button onClick={()=>deleteClass(classItem)} className="btn btn-sm btn-ghost  bg-red-600  text-white">Delete</button>
+                                    <button onClick={() => deleteClass(classItem)} className="btn btn-sm btn-ghost  bg-red-600  text-white">Delete</button>
                                 </td>
                             </tr>)
                         }

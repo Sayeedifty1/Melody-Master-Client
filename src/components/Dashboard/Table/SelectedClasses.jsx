@@ -1,11 +1,13 @@
 
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MyClassTable from "./MyClassTable";
 
 const SelectedClasses = () => {
+    const navigate = useNavigate();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: classes = [], refetch } = useQuery(["selected"], async () => {
@@ -30,8 +32,9 @@ const SelectedClasses = () => {
             });
     }
 
-   const  handlePay = () => {
-        console.log("pay")
+   const  handlePay = (id) => {
+        console.log("pay" , id)
+        navigate(`/dashboard/payment/${id}`)
     }
     return (
         <div>

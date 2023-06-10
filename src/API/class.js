@@ -50,4 +50,14 @@ export const fetchClasses = async () => {
     }
   };
   
-  
+// fetch selected class by id
+export const fetchSelectedClassById = async (id) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/classes/get/${id}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching classes:', error);
+      throw new Error('Failed to fetch classes');
+    }
+  }
