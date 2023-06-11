@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser)
                 const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL }  //!manage user info in database
-                fetch('http://localhost:5000/users', {
+                fetch('https://melody-master-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

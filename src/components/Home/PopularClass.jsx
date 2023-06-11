@@ -11,7 +11,7 @@ import Title from "../Title/Title";
 
 const PopularClass = () => {
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, role } = useAuth();
     const [classes] = useClasses();
     console.log(classes)
 
@@ -65,11 +65,11 @@ const PopularClass = () => {
                             <p>Available Seats: {classItem.availableSeats}</p>
                             <p>Price: ${classItem.price}</p>
                             <div className="card-actions justify-end">
-                                {classItem.availableSeats === 0 ? (
-                                    <button className="btn" disabled>
-                                        Select
-                                    </button>
-                                ) : (
+                            {classItem.availableSeats === 0 || role==="instructor" || role==="admin" ? (
+                                        <button className="btn" disabled>
+                                            Select
+                                        </button>
+                                    ) : (
                                     <button onClick={() => handleSelected(classItem)} className="button-74">Select</button>
                                 )}
                             </div>

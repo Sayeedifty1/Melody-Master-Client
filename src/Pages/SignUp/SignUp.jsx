@@ -28,7 +28,7 @@ const SignUp = () => {
             .then(() => {
                 const saveUser= {name:data.name ,email:data.email,
                     photoURL:data.photoURL, number:data.phoneNumber,gender:data.gender,address:data.address }
-                    fetch('http://localhost:5000/users',{
+                    fetch('https://melody-master-server.vercel.app/users',{
                         method:'POST',
                         headers:{'content-type':'application/json'},
                         body:JSON.stringify(saveUser)
