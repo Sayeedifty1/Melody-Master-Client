@@ -40,7 +40,7 @@ const Dropdown = () => {
                     {/*TODO:make toggle button that toggle dark and light mode */}
                     <input 
                      onClick={handleTheme}
-                    type="checkbox" className="toggle toggle-lg"  />
+                    type="checkbox" className="toggle toggle-xl"  />
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -64,7 +64,7 @@ const Dropdown = () => {
                         {user ? (
                             <div
                                onClick={handleLogout}
-                                className='px-4 py-3 dark:bg-red-500 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                                className='px-4 py-3 dark:text-yellow-400 dark:bg-red-500 dark:hover:bg-slate-700 hover:bg-neutral-100 transition hover:text-black font-semibold cursor-pointer'
                             >
                                 Logout
                             </div>
@@ -72,13 +72,13 @@ const Dropdown = () => {
                             <>
                                 <Link
                                     to='/login'
-                                    className='px-4 py-3  hover:bg-neutral-100 transition font-semibold'
+                                    className='px-4 py-3  dark:text-yellow-400 dark:bg-red-500 dark:hover:bg-slate-700 hover:bg-neutral-100 hover:text-black transition font-semibold'
                                 >
                                     Login
                                 </Link>
                                 <Link
                                     to='/signup'
-                                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                    className='px-4 py-3  dark:text-yellow-400 dark:bg-red-500 dark:hover:bg-slate-700 hover:bg-neutral-100 hover:text-black transition font-semibold'
                                 >
                                     Sign Up
                                 </Link>

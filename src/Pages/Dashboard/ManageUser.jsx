@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaUserShield } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
@@ -67,6 +68,9 @@ const ManageUser = () => {
 
     return (
         <div className="w-full">
+             <Helmet>
+                <title>MM | Dashboard | Manage User</title>
+            </Helmet>
             <h1 className="text-3xl font-semibold my-6">Total Users {users.length}</h1>
 
             <div className="overflow-x-auto">

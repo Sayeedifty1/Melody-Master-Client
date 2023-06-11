@@ -7,6 +7,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { signIn } = useAuth();
@@ -43,15 +44,13 @@ const Login = () => {
 
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 dark:bg-slate-400">
+            <Helmet>
+                <title>MM | Login</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center md:w-1/2 lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-                        excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-                        a id nisi.
-                    </p>
+                <iframe width={500} height={500} src="https://embed.lottiefiles.com/animation/121421"></iframe>
                 </div>
                 <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -108,7 +107,7 @@ const Login = () => {
                         </div>
                         <SocialLogin></SocialLogin>
                     </form>
-
+                            
                     
                     <p className="text-center mt-4">
                         <small>

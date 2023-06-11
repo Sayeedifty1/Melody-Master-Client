@@ -1,5 +1,6 @@
 
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
@@ -39,6 +40,9 @@ const SelectedClasses = () => {
     }
     return (
         <div>
+               <Helmet>
+                <title>MM | Dashboard | Selected Class</title>
+            </Helmet>
        <MyClassTable 
        refetch={refetch}
        classes={classes}

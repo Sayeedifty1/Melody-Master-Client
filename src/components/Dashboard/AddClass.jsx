@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { addClass } from "../../API/class";
@@ -72,6 +73,9 @@ const AddClass = () => {
     }
     return (
         <div>
+             <Helmet>
+                <title>MM | Dashboard | Add Class</title>
+            </Helmet>
             <AddClassFrom
                 user={user}
                 loading={loading}

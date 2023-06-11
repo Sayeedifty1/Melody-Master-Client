@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 
 const EnrolledClass = () => {
@@ -16,7 +17,9 @@ const EnrolledClass = () => {
     console.log(classes)
     return (
         <div className="w-full">
-
+             <Helmet>
+                <title>MM | Dashboard | Enrolled Class</title>
+            </Helmet>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     {/* head */}

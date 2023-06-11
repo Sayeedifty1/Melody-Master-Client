@@ -4,7 +4,7 @@ import img from '../../../assets/logo.png'
 const Footer = () => {
     return (
 
-        <><footer className="footer p-10 bg-base-200 text-base-content">
+        <><footer className="footer p-10 dark:bg-slate-800 dark:text-white bg-base-200 text-base-content">
             <div>
                <img className='w-[200px]' src={img} alt="" />
                 <p>Providing reliable tech since 1992</p>
@@ -31,12 +31,12 @@ const Footer = () => {
                     </label>
                     <div className="relative">
                         <input type="text" placeholder="username@site.com" className="input input-bordered w-full pr-16" />
-                        <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+                        <button className="btn  bg-yellow-600 absolute top-0 right-0 rounded-l-none">Subscribe</button>
                     </div>
                 </div>
             </div>
         </footer>
-            <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+            <footer className="footer footer-center p-4 bg-base-300 dark:bg-slate-700 text-base-content dark:text-white">
                 <div>
                     <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
                 </div>

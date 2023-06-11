@@ -1,6 +1,8 @@
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
 
@@ -57,16 +59,15 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="w-full max-w-4xl mx-auto shadow-2xl bg-base-100 p-6">
+        <div className="flex items-center justify-center h-screen dark:bg-slate-500">
+            <Helmet>
+                <title>MM | Sign Up</title>
+            </Helmet>
+            <div className="w-full max-w-4xl mx-auto shadow-2xl bg-base-100 p-6 dark:bg-slate-400">
                 <h1 className="text-5xl font-bold text-center mb-6">Sign up now!</h1>
-                <p className="text-center mb-6">
-                    Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-                    excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-                    id nisi.
-                </p>
+                
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-6 ">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -217,7 +218,9 @@ const SignUp = () => {
                             disabled= {!!errors.confirmPassword}
                         />
                     </div>
+                    
                 </form>
+                <SocialLogin />
                 <p className="text-center mt-4">
                     Already have an account? <Link to="/login">Login</Link>
                 </p>

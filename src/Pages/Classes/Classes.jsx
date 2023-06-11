@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { postSelectedClasses } from "../../API/class";
 import Container from "../../components/Shared/Container";
+import Title from "../../components/Title/Title";
 import useAuth from "../../hooks/useAuth";
 
 const Classes = () => {
     const [approvedClasses, setApprovedClasses] = useState([]);
-    const {user} = useAuth();
+    const {user, role } = useAuth();
+   console.log(role)
 const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,12 +55,16 @@ const navigate = useNavigate();
 
     return (
         <div className="py-[133px]">
+               <Helmet>
+                <title>Melody Master | Classes</title>
+            </Helmet>
+            <Title heading="All Classes"></Title>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
                     {approvedClasses.map((classItem) => (
                         <div
                             key={classItem._id}
-                            className={`card lg:card-side ${classItem.availableSeats === 0 ? "bg-red-400" : "bg-red-50"
+                            className={`card lg:card-side ${classItem.availableSeats === 0 ? 'bg-red-400 dark:bg-red-400' : 'bg-red-50 dark:bg-zinc-400'
                                 } shadow-xl`}
                         >
                             <div className="card-body">
@@ -68,7 +75,7 @@ const navigate = useNavigate();
                                 <p>Available Seats: {classItem.availableSeats}</p>
                                 <p>Price: ${classItem.price}</p>
                                 <div className="card-actions justify-start">
-                                    {classItem.availableSeats === 0 ? (
+                                    {classItem.availableSeats === 0 || role==="instructor" || role==="admin" ? (
                                         <button className="btn" disabled>
                                             Select
                                         </button>

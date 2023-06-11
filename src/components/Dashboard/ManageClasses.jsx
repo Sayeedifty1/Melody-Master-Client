@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -88,6 +89,9 @@ const ManageClasses = () => {
     };
     return (
         <div>
+             <Helmet>
+                <title>MM | Dashboard | Manage Class</title>
+            </Helmet>
             <iframe className="mx-auto" src="https://embed.lottiefiles.com/animation/20596"></iframe>
             <UserTable classes={classes}
                 approveClass={approveClass}

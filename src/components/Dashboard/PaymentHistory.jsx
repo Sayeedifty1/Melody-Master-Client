@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 
 
@@ -23,7 +24,9 @@ const PaymentHistory = () => {
 
     return (
         <div>
-        
+         <Helmet>
+                <title>MM | Dashboard | Payment History</title>
+            </Helmet>
             <div className="w-full">
 
                 <div className="overflow-x-auto w-full">

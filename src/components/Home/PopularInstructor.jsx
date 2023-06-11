@@ -18,7 +18,7 @@ const PopularInstructor = () => {
                                 <figure>
                                     <img  src={instructor.photoURL} alt="Instructor" className="transition-opacity duration-300 opacity-100 hover:opacity-0 h-[350px] w-[350px]" />
                                 </figure>
-                                <div className="card-body bg-black text-white transition-opacity duration-300 opacity-0 hover:opacity-50 absolute inset-0 flex flex-col justify-center items-center">
+                                <div className="card-body bg-slate-700 text-white transition-opacity duration-300 opacity-0 hover:opacity-50 absolute inset-0 flex flex-col justify-center items-center">
                                     <h2 className="card-title text-2xl">{instructor.name}</h2>
                                     <h2 className="card-title text-xl">Total class: {instructor.numberOfClasses}</h2>
                                     <hr />

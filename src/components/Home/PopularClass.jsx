@@ -52,7 +52,7 @@ const PopularClass = () => {
                 {classes.map((classItem) => (
                     <div
                         key={classItem._id}
-                        className={`card lg:card-side shadow-xl ${classItem.availableSeats === 0 ? 'bg-red-400' : 'bg-red-50'
+                        className={`card lg:card-side shadow-xl  ${classItem.availableSeats === 0 ? 'bg-red-400 dark:bg-red-400' : 'bg-red-50 dark:bg-zinc-400'
                             }`}
                     >
                         <figure>

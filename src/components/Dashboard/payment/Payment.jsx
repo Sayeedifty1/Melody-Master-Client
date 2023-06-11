@@ -1,6 +1,7 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { fetchSelectedClassById } from '../../../API/class';
 import CheckOutForm from './CheckOutFrom';
@@ -29,6 +30,9 @@ const Payment = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>MM | Payment</title>
+            </Helmet>
             <div className='text-center'>
                 <h3 className='text-2xl '>Pay To enroll in Class <br /> <span className='text-3xl font-bold'> {data.name}</span></h3>
                 <h3 className='text-xl mt-20'>Please Pay: ${data.price}</h3>

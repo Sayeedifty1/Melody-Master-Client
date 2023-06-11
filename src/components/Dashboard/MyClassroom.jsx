@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -13,6 +14,9 @@ const MyClassroom = () => {
     console.log(classes)
     return (
         <div>
+             <Helmet>
+                <title>MM | Dashboard | My Classroom</title>
+            </Helmet>
            <div className="w-full">
             <h1 className="text-3xl font-semibold my-6">Total Classes {classes.length}</h1>
 
