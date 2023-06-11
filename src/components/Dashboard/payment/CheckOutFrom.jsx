@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 
 const CheckOutForm = ({ price, enrolledClass }) => {
-    const axiosSecure = useAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
     const stripe = useStripe();
@@ -20,8 +20,7 @@ const CheckOutForm = ({ price, enrolledClass }) => {
 
     useEffect(() => {
         if (price > 0) {
-            axiosSecure
-                .post('/create-payment-intent', { price })
+            axiosSecure.post('/create-payment-intent', { price })
                 .then((res) => {
                     setClientSecret(res.data.clientSecret);
                 })

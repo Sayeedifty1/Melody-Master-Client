@@ -59,7 +59,7 @@ const PopularClass = () => {
                             <img className="w-[400px] h-[400px]" src={classItem.image} alt="Class" />
                         </figure>
                         <div className="card-body">
-                            <h2 className="card-title text-3xl font-serif text-blue-950">{classItem.name}</h2>
+                            <h2 className="cnard-title text-3xl font-serif text-blue-950">{classItem.name}</h2>
                             <p className="text-2xl font-semibold">Instructor: {classItem.instructor}</p>
                             <p>Enrolled Students: {classItem.numberOfStudents}</p>
                             <p>Available Seats: {classItem.availableSeats}</p>

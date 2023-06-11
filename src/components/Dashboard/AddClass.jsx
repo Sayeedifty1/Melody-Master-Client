@@ -20,7 +20,8 @@ const AddClass = () => {
         const instructor = e.target.instructor.value;
         const instructorEmail = e.target.email.value;
         const price = e.target.price.value;
-        const availableSeats = e.target.seats.value;
+        const seats = e.target.seats.value;
+        const availableSeats = parseInt(seats);
         const image = e.target.image.files[0];
         setUploadButtonText("uploading...");
 

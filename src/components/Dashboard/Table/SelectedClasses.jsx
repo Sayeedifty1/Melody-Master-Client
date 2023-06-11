@@ -9,7 +9,7 @@ import MyClassTable from "./MyClassTable";
 const SelectedClasses = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
     const { data: classes = [], refetch } = useQuery(["selected"], async () => {
         const res = await axiosSecure.get(`/classes/selected/${user?.email}`);
         return res.data;

@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       children:[
         {
           path:"manage-user",
-          element:<AdminRoute><ManageUser></ManageUser></AdminRoute>
+          element:<ManageUser></ManageUser>
         },
         {
           path:"manage-class",
