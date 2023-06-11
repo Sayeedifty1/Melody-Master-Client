@@ -15,12 +15,14 @@ const Instructors = () => {
                 setInstructors(data);
             })
     }, [])
+    console.log(instructors)
 
     return (
         <div className="py-[113px] bg-red-50">
             <Container>
                 <div className="grid grid-cols-3 gap-6">
-                    {instructors.map((instructor) => (
+                    {
+                    instructors.map((instructor) => (
                         <div key={instructor._id}>
                             <div className="card w-80 h-[600px] bg-base-100 shadow-xl">
                                 <figure style={{ height: '50%' }}><img className="" src={instructor.photoURL} alt="Shoes" /></figure>
@@ -33,7 +35,11 @@ const Instructors = () => {
 
                                     <h2>Learn From {instructor.name}</h2>
                                     <ul>
-                                       <li>*{instructor.classes}</li>
+                                       {
+                                        instructor.classes.map((cls, index) => (
+                                            <li key={index}>{cls}</li>
+                                        ))
+                                       }
                                     </ul> 
                                     <div className="card-actions justify-end">
 

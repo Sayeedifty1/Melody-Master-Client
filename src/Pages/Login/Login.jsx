@@ -6,6 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
     const { signIn } = useAuth();
@@ -105,7 +106,10 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
+                        <SocialLogin></SocialLogin>
                     </form>
+
+                    
                     <p className="text-center mt-4">
                         <small>
                             New Here? <Link to="/signup">Create an account</Link>
