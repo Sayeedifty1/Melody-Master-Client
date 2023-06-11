@@ -13,8 +13,8 @@ const PopularInstructor = () => {
                 <Title heading="Our Instructors" subHeading="Our Popular Instructors"></Title>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 ">
                     {
-                        instructors.map((instructor) => (
-                            <div key={instructor._id} className="card w-[350px] h-[350px] bg-base-100 shadow-xl relative overflow-hidden">
+                        instructors.map((instructor, index) => (
+                            <div key={index} className="card w-[350px] h-[350px] bg-base-100 shadow-xl relative overflow-hidden">
                                 <figure>
                                     <img  src={instructor.photoURL} alt="Instructor" className="transition-opacity duration-300 opacity-100 hover:opacity-0 h-[350px] w-[350px]" />
                                 </figure>
