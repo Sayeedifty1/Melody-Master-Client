@@ -5,6 +5,7 @@ import Dropdown from "./DropDown";
 
 const NavLinks = () => {
     const {user} = useAuth();
+
     return (
 
         <div className='flex flex-row items-center justify-center md:justify-between text-white  dark:text-yellow-600'>
@@ -12,7 +13,8 @@ const NavLinks = () => {
             <Link to="/instructors"><div className='font-semibold  px-0 md:px-6'>Instructor</div></Link>
             <Link to="/classes"><div className=' font-semibold px-6'>Classes</div></Link>
             {user &&
-                <Link to="/dashboard"><div className=' font-semibold px-6'>Dashboard</div></Link>}
+                <Link to={"/dashboard"}><div className=' font-semibold px-6'>Dashboard</div></Link>
+                }
             <Dropdown></Dropdown>
         </div>
 
