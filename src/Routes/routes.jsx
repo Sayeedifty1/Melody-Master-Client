@@ -3,6 +3,7 @@ import {
    
   } from "react-router-dom";
 import AddClass from "../components/Dashboard/AddClass";
+import EnrolledClass from "../components/Dashboard/EnrolledClass";
 import ManageClasses from "../components/Dashboard/ManageClasses";
 import MyClassroom from "../components/Dashboard/MyClassroom";
 import Payment from "../components/Dashboard/payment/Payment";
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
         {
           path:"payment-history",
           element:<PaymentHistory></PaymentHistory>
+        },
+        {
+          path:"enrolled-classes",
+          element:<EnrolledClass></EnrolledClass>
         },
       ]
     }

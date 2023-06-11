@@ -23,22 +23,7 @@ const PaymentHistory = () => {
 
     return (
         <div>
-            {/* <table>
-      <thead>
-        <tr>
-          <th>Transaction ID</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedTransactions.map((transaction, index) => (
-          <tr key={index}>
-            <td>{transaction.transactionId}</td>
-            <td>{transaction.date}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table> */}
+        
             <div className="w-full">
 
                 <div className="overflow-x-auto w-full">
@@ -56,22 +41,22 @@ const PaymentHistory = () => {
                         </thead>
                         <tbody className="text-center">
                             {
-                                sortedTransactions.map((tranx, index) => <tr key={tranx._id}>
+                                sortedTransactions.map((trans, index) => <tr key={trans._id}>
                                     <td>
                                         {index + 1}
                                     </td>
                                     <td>
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={tranx.enrolledClass.image} alt="Class image" />
+                                            <img src={trans.enrolledClass.image} alt="Class image" />
                                         </div>
                                     </td>
-                                    <td>{tranx.enrolledClass.name}</td>
+                                    <td>{trans.enrolledClass.name}</td>
                                     <td>
-                                        {tranx.transactionId}
+                                        {trans.transactionId}
                                     </td>
-                                    <td className="">${tranx.price}</td>
+                                    <td className="">${trans.price}</td>
                                     <td className="text-center">
-                                        {tranx.date}
+                                        {trans.date}
                                     </td>
                                    
                                    
