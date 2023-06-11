@@ -21,6 +21,7 @@ import Instructors from "../Pages/Instructors/Instructors";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRourte";
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -59,19 +60,19 @@ const router = createBrowserRouter([
       children:[
         {
           path:"manage-user",
-          element:<ManageUser></ManageUser>
+          element:<AdminRoute><ManageUser></ManageUser></AdminRoute>
         },
         {
           path:"manage-class",
-          element:<ManageClasses></ManageClasses>
+          element:<AdminRoute><ManageClasses></ManageClasses></AdminRoute>
         },
         {
           path:"add-class",
-          element:<AddClass></AddClass>
+          element:<InstructorRoute><AddClass></AddClass></InstructorRoute>
         },
         {
           path:"my-classroom",
-          element:<MyClassroom></MyClassroom>
+          element:<InstructorRoute><MyClassroom></MyClassroom></InstructorRoute>
         },
         {
           path:'my-classes',

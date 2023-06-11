@@ -1,10 +1,10 @@
-import useInstructor from "../../hooks/useInstructor";
+import usePopularInstructor from "../../hooks/usePopularInstructor";
 import Container from "../Shared/Container";
 import Title from "../Title/Title";
 
 
 const PopularInstructor = () => {
-    const [instructors] = useInstructor();
+    const [instructors] = usePopularInstructor();
     console.log(instructors)
     return (
         <Container>

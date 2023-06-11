@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query"
+import useAuth from "./useAuth"
+import useAxiosSecure from "./useAxiosSecure"
 
 
 const useInstructor = () => {
-    const [instructors , setInstructors] = useState([]);
-    const [loading , setLoading] = useState(true);
-    
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_BASE_URL}/instructors/popular`)
-        .then(res => res.json())
-        .then(data => {
-            setInstructors(data);
-            setLoading(false);
-        })
-    },[])
-
-    return [instructors , loading]
-    
-};
+    const { user ,  loading } = useAuth()
+    const [axiosSecure] = useAxiosSecure()
+    // use axiosSecure with react-query
+    const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
+        queryKey: ['isAdmin', user?.email],
+        enabled: !loading,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/instructor/${user?.email}`)
+            return res.data.admin
+        }
+    })
+    return [isInstructor, isInstructorLoading]
+}
 
 export default useInstructor;
