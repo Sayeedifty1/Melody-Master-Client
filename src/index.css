@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.active {
+  border-bottom: 2px solid rgb(237, 230, 38);
+  background-color: rgb(4, 37, 37);
+  padding: 3px;
+  border-radius: 8px;
+}
 
 
 /* CSS */

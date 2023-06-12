@@ -1,5 +1,6 @@
 
 import { Navigate, useLocation } from "react-router-dom";
+import Loader from "../components/Shared/Loader";
 import useAuth from "../hooks/useAuth";
 import useInstructor from "../hooks/useInstructor";
 
@@ -15,7 +16,7 @@ const InstructorRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading || isAdminLoading) {
-        return <span className="loading loading-bars loading-lg"></span>
+        return <Loader></Loader>
 
     }
 

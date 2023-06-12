@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Offer from '../components/Home/Offer';
 import PopularClass from '../components/Home/PopularClass';
 import PopularInstructor from '../components/Home/PopularInstructor';
+import Show from '../components/Home/Show';
 import MySlider from '../components/Home/Slider';
 
 const HomeLayout = () => {
@@ -24,6 +25,7 @@ const HomeLayout = () => {
         <PopularClass />
       </div>
       <PopularInstructor></PopularInstructor>
+      <Show></Show>
     </div>
   );
 };

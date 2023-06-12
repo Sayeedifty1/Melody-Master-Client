@@ -44,13 +44,13 @@ const Login = () => {
 
 
     return (
-        <div className="hero min-h-screen bg-base-200 dark:bg-slate-400">
+        <div className="hero min-h-screen bg-base-200 dark:bg-slate-400 ">
             <Helmet>
                 <title>MM | Login</title>
             </Helmet>
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content flex-col lg:flex-row-reverse mt-12">
                 <div className="text-center md:w-1/2 lg:text-left">
-                <iframe width={500} height={500} src="https://embed.lottiefiles.com/animation/121421"></iframe>
+                <iframe className="md:w[500px] md:h-[500px]"src="https://embed.lottiefiles.com/animation/121421"></iframe>
                 </div>
                 <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
