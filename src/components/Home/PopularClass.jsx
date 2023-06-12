@@ -48,7 +48,7 @@ const PopularClass = () => {
     return (
         <Container>
             <Title subHeading="Our Classes" heading="Most Popular Classes" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"  data-aos="fade-up" >
                 {classes.map((classItem) => (
                     <div
                         key={classItem._id}

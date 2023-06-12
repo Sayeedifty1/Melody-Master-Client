@@ -13,15 +13,15 @@ const HomeLayout = () => {
       <Helmet>
                 <title>Melody Master | Home</title>
             </Helmet>
-      <div className="relative max-h-screen">
+      <div className="relative max-h-screen " >
         <MySlider />
 
-        <div className="md:absolute bottom-[-300px] left-0 w-full">
+        <div className="md:absolute bottom-[-300px] left-0 w-full ">
           <Offer />
         </div>
       </div>
 
-      <div className="mt-[400px]">
+      <div className="mt-[400px]" >
         <PopularClass />
       </div>
       <PopularInstructor></PopularInstructor>

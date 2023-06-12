@@ -23,7 +23,7 @@ const Show = () => {
                 <div className="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
 
                     <div className="max-w-xl mb-6">
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-accent sm:text-4xl sm:leading-none">
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-blue-950 dark:text-accent sm:text-4xl sm:leading-none">
                             Let us build
                             <br className="hidden md:block" />
                             the next{' '}
@@ -31,7 +31,7 @@ const Show = () => {
                                 superstar
                             </span>
                         </h2>
-                        <p className="text-base text-accent/70 md:text-lg">
+                        <p className="text-base dark:text-accent/70 md:text-lg">
                         Bring your children to a trial lesson to find out how much they enjoy doing music or singing
                         </p>
                     </div>
